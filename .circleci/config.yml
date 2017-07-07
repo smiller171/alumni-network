@@ -4,8 +4,8 @@ jobs:
     working_directory: ~/alumni-network
     docker:
       - image: circleci/node:latest
-      - image: mongo:3
-      - image: redis:3.2
+      # - image: mongo:3
+      # - image: redis:3.2
     steps:
       - checkout
       - restore_cache:
