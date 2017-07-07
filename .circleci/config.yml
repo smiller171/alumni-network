@@ -77,3 +77,15 @@ jobs:
             - node_modules
           # Save cache for this specific set of packages
           key: v1-client-deps-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "deps_checksum" }}
+
+workflows:
+  version: 2
+  checkout_lint:
+    jobs:
+      - checkout
+      - server-lint:
+          requires:
+            - checkout
+      - client-lint:
+          requires:
+            - checkout
