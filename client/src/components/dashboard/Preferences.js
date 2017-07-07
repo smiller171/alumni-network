@@ -1,4 +1,8 @@
 // beginning to alphabetize imports for best practices
+import interests, { INTERESTS_MAP } from '../../assets/dropdowns/interests';
+import { saveUser, updateUser, updateUserPartial } from '../../actions/user';
+import skills, { SKILLS_MAP } from '../../assets/dropdowns/skills';
+
 import { Button } from 'semantic-ui-react';
 import Career from './Profile/Preferences/Career';
 import Certifications from './Profile/Preferences/Certifications';
@@ -8,7 +12,6 @@ import { connectScreenSize } from 'react-screen-size';
 import { countryCodes } from '../../assets/dropdowns/countries';
 import ERROR from '../../assets/helpers/errors';
 import { findIndex } from 'lodash';
-import interests, { INTERESTS_MAP } from '../../assets/dropdowns/interests';
 import { isEmpty } from 'lodash';
 import { mapScreenSizeToProps } from '../Navbar';
 import Mentorship from './Profile/Preferences/Mentorship';
@@ -17,8 +20,6 @@ import PersonalInfo from './Profile/Preferences/PersonalInfo';
 import propTypes from 'prop-types';
 import React from 'react';
 import { savePreferencesViewState } from '../../actions/views';
-import { saveUser, updateUser, updateUserPartial } from '../../actions/user';
-import skills, { SKILLS_MAP } from '../../assets/dropdowns/skills';
 import SkillsAndInterests from './Profile/Preferences/SkillsAndInterests';
 import Social from './Profile/Preferences/Social';
 import styled from 'styled-components';
