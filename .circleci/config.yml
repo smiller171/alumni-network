@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/alumni-network
+    docker:
+      - image: circleci/node:latest
+      - image: mongo:3
+      - image: redis:3.2
+    steps:
+      - checkout
+      - restore_cache:
+        keys:
+          # Find a cache corresponding to this specific package.json checksum
+          # when this file is changed, this key will fail
+          - v1-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          # Find the most recent cache used from this branch
+          - v1-npm-deps-{{ .Branch }}
+          # Find the most recent cache used from master
+          - v1-npm-deps-master
+          # Find the most recent cache used from any Branch
+          - v1-npm-deps
+      - run:
+        name: install dependencies
+        command: npm install
+      - run:
+        name: Running Linter
+        command: npm run lint
+        no_output_timeout: 1m
+      - run:
+        name: index dependencies
+        command: ls -laR node_modules > deps_checksum
+      - save_cache:
+        paths:
+          - node_modules
+        # Save cache for this specific package.json
+        key: v1-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "deps_checksum" }}
