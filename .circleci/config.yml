@@ -79,5 +79,5 @@ workflows:
   version: 2
   checkout_lint:
     jobs:
-      - server-lint:
-      - client-lint:
+      - server-lint
+      - client-lint
