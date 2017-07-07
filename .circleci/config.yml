@@ -6,23 +6,11 @@ defaults: &defaults
 
 version: 2
 jobs:
-  checkout_code:
-    <<: *defaults
-    working_directory: ~/alumni-network
-    steps:
-      - checkout
-      - run: echo $PWD
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-
   server-lint:
     <<: *defaults
     working_directory: ~/alumni-network
     steps:
-      - attach_workspace:
-          at: ~/alumni-network
+      - checkout
       - restore_cache:
           keys:
             # Find a cache corresponding to this specific package.json checksum
@@ -56,8 +44,8 @@ jobs:
     <<: *defaults
     working_directory: ~/alumni-network/client
     steps:
-      - attach_workspace:
-          at: ~/alumni-network
+      - checkout:
+          path: ~/alumni-network
       - restore_cache:
           keys:
             # Find a cache corresponding to this specific package.json checksum
@@ -91,10 +79,5 @@ workflows:
   version: 2
   checkout_lint:
     jobs:
-      - checkout_code
       - server-lint:
-          requires:
-            - checkout_code
       - client-lint:
-          requires:
-            - checkout_code
