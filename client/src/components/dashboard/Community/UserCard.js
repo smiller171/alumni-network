@@ -1,11 +1,12 @@
-import React from 'react';
 import CertLinks from './CertLinks';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
-import SocialLinks from './SocialLinks';
 import { connectScreenSize } from 'react-screen-size';
 import parseDate from '../../../assets/helpers/parseDate';
-import { initiatePrivateChat, clearNotifications } from '../../../actions/chat';
+import React from 'react';
+import SocialLinks from './SocialLinks';
+import styled from 'styled-components';
+
+import { clearNotifications, initiatePrivateChat } from '../../../actions/chat';
 
 const Clickable = styled.div`
   cursor: pointer;

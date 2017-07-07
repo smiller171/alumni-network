@@ -1,24 +1,24 @@
-import React from 'react';
-import propTypes from 'prop-types';
+import Career from './Profile/Public/CareerRow';
 import { connect } from 'react-redux';
-import SocialList from './Profile/Public/SocialList';
-import UserLabel from '../dashboard/common/UserLabel';
-import { SubHeader } from './Profile/Public/SkillsRow';
-import LocationSteps from './Profile/Public/LocationSteps';
-import { mentorshipSearchQuery } from '../../actions/search';
-import { scrapeFccStats } from '../../actions/scrape-fcc.js';
-import MainHeader from '../dashboard/Profile/Public/ProfileHeader';
-import { initiatePrivateChat, clearNotifications } from '../../actions/chat';
-import { ThickPaddedBottom, StyledItem } from '../../styles/style-utils';
-import SkillsAndInterests from './Profile/Public/SkillsRow';
-import TableRow from '../dashboard/Profile/Public/TableRow';
-import FCCStatTables from './Profile/Public/FCCTables';
-import Table from '../dashboard/Profile/Public/Table';
 import { connectScreenSize } from 'react-screen-size';
 import { defaultUser } from '../../reducers/user';
-import Career from './Profile/Public/CareerRow';
-import styled from 'styled-components';
+import FCCStatTables from './Profile/Public/FCCTables';
 import { isEmpty } from 'lodash';
+import LocationSteps from './Profile/Public/LocationSteps';
+import MainHeader from '../dashboard/Profile/Public/ProfileHeader';
+import { mentorshipSearchQuery } from '../../actions/search';
+import propTypes from 'prop-types';
+import React from 'react';
+import { scrapeFccStats } from '../../actions/scrape-fcc.js';
+import SkillsAndInterests from './Profile/Public/SkillsRow';
+import SocialList from './Profile/Public/SocialList';
+import styled from 'styled-components';
+import { SubHeader } from './Profile/Public/SkillsRow';
+import Table from '../dashboard/Profile/Public/Table';
+import TableRow from '../dashboard/Profile/Public/TableRow';
+import UserLabel from '../dashboard/common/UserLabel';
+import { clearNotifications, initiatePrivateChat } from '../../actions/chat';
+import { StyledItem, ThickPaddedBottom } from '../../styles/style-utils';
 
 // STYLED COMPONENTS:
 const Avatar = styled.img`

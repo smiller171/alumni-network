@@ -1,8 +1,8 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { connectScreenSize } from 'react-screen-size';
 import { mapScreenSizeToProps } from '../Navbar';
+import React from 'react';
+import styled from 'styled-components';
 
 import UserCard from './Community/UserCard';
 

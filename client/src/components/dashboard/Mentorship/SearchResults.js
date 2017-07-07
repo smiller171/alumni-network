@@ -1,9 +1,10 @@
-import React from 'react';
 import propTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
+
 import {
-  ThickPaddedBottom,
-  hoverTransition
+  hoverTransition,
+  ThickPaddedBottom
 } from '../../../styles/style-utils';
 
 const ResultItem = styled.div`
@@ -29,7 +30,7 @@ const IMG = styled.img`
 const SearchResults = ({
   results,
   noResults,
-  privateChat, 
+  privateChat,
   currentUser,
   handleClick,
   initiatePrivateChat,

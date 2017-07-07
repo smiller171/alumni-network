@@ -1,28 +1,28 @@
-import React from 'react';
-import { isEmpty } from 'lodash';
+import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { Popup } from 'semantic-ui-react';
-import Filters from './Mentorship/SearchFilters';
 import { defaultState } from '../../reducers/search';
+import DropDown from '../dashboard/common/DropdownMulti';
+import filterOptions from '../../assets/helpers/filterOptions';
+import Filters from './Mentorship/SearchFilters';
+import { isEmpty } from 'lodash';
+import { Popup } from 'semantic-ui-react';
+import React from 'react';
 import { saveSearchState } from '../../actions/search';
 import SearchResults from './Mentorship/SearchResults';
-import DropDown from '../dashboard/common/DropdownMulti';
 import searchTypes from '../../assets/dropdowns/searchTypes';
-import { addFlashMessage } from '../../actions/flashMessages';
-import filterOptions from '../../assets/helpers/filterOptions';
+import styled from 'styled-components';
 
 import {
-  initiatePrivateChat,
-  clearNotifications
-} from '../../actions/chat';
-
-import {
+  CenterAlignedWrapper as CenteredWrapper,
+  extendCenterAlignedWrapper,
   transitionIn,
   transitionOut,
-  extendCenterAlignedWrapper,
-  CenterAlignedWrapper as CenteredWrapper,
 } from '../../styles/style-utils';
+
+import {
+  clearNotifications,
+  initiatePrivateChat
+} from '../../actions/chat';
 
 const searchApi = {
   match: (regex, string) => {
@@ -148,11 +148,11 @@ class Mentorship extends React.Component {
     const { searchCriteria } = this.state;
 
     var
-    matchSkill = [],
-    matchName = false,
-    matchInterest = [],
     matchCompany = false,
+    matchInterest = [],
     matchLocation = false,
+    matchName = false,
+    matchSkill = [],
     mentorshipBio = false,
     { community } = this.props,
     regexArray = searchString && searchString.split(' ').map(escapedRegex => {

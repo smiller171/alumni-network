@@ -1,9 +1,9 @@
-import React from 'react';
-import { isEqual } from 'lodash';
 import { isEmpty } from 'lodash';
+import { isEqual } from 'lodash';
+import MessageBox from '../../common/MessageBox';
+import React from 'react';
 import RepoContainer from './common/RepoContainer';
 import Ribbon from './common/RibbonHeader';
-import MessageBox from '../../common/MessageBox';
 import { TransitionContainer } from '../../../../styles/style-utils';
 
 export default class Collaboration extends React.Component {

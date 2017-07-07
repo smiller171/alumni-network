@@ -1,8 +1,4 @@
 // beginning to alphabetize imports for best practices
-import interests, { INTERESTS_MAP } from '../../assets/dropdowns/interests';
-import { saveUser, updateUser, updateUserPartial } from '../../actions/user';
-import skills, { SKILLS_MAP } from '../../assets/dropdowns/skills';
-
 import { Button } from 'semantic-ui-react';
 import Career from './Profile/Preferences/Career';
 import Certifications from './Profile/Preferences/Certifications';
@@ -27,6 +23,10 @@ import swearjar from '../../assets/helpers/swearjar-lite';
 import { ThickPaddedBottom } from '../../styles/style-utils';
 import UserLabel from '../dashboard/common/UserLabel';
 import validate from '../../assets/helpers/validations';
+
+import interests, { INTERESTS_MAP } from '../../assets/dropdowns/interests';
+import { saveUser, updateUser, updateUserPartial } from '../../actions/user';
+import skills, { SKILLS_MAP } from '../../assets/dropdowns/skills';
 
 /*
 TODO:

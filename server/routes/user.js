@@ -5,10 +5,10 @@ import checkWhiteList from '../helpers/checkWhiteList';
 import express from 'express';
 import handleProcessedUser from '../helpers/handleProcessedUser';
 import { isAuthenticated } from './passport';
+import isCertified from '../helpers/processCerts';
 import passport from 'passport';
 import PrivateChat from '../models/private-chat';
 import safeHandler from '../helpers/safeHandler';
-import isCertified from '../helpers/processCerts';
 import User from '../models/user';
 
 const router = express.Router();

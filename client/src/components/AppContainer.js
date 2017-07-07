@@ -1,21 +1,22 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { socket } from '../actions/chat';
-import { populateCommunity } from '../actions/community';
-import { populateChat, fetchPrivateChat } from '../actions/chat';
-import { saveUser, getUserData, logoutUser } from '../actions/user';
-import { addFlashMessage, clearFlashMessage } from '../actions/flashMessages';
-
-import { CatchAll } from '../App';
 import Account from './dashboard/Account';
-import Landing from './dashboard/Landing';
-import Community from './dashboard/Community';
-import Mentorship from './dashboard/Mentorship';
-import Preferences from './dashboard/Preferences';
+import { CatchAll } from '../App';
 import Chat from './dashboard/Chat/ChatController';
+import Community from './dashboard/Community';
+import { connect } from 'react-redux';
+import Landing from './dashboard/Landing';
+import Mentorship from './dashboard/Mentorship';
+import { populateCommunity } from '../actions/community';
+import Preferences from './dashboard/Preferences';
+import propTypes from 'prop-types';
 import PublicProfile from './dashboard/PublicProfile';
+import React from 'react';
+import { socket } from '../actions/chat';
+
+import { addFlashMessage, clearFlashMessage } from '../actions/flashMessages';
+import { fetchPrivateChat, populateChat } from '../actions/chat';
+import { getUserData, logoutUser, saveUser } from '../actions/user';
+import { Route, Switch } from 'react-router-dom';
+
 
 class AppContainer extends React.Component {
 

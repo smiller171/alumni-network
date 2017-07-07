@@ -8,12 +8,13 @@ rules:
     memberSyntaxSortOrder:
     - none
     - all
-    - multiple
     - single
+    - multiple
   sort-vars:
   - error
   - ignoreCase: true
   sort-keys:
-  - error
+  - warn
+  - asc
   - caseSensitive: false
     natural: true

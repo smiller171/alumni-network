@@ -1,18 +1,18 @@
-import React from 'react';
-import { isEmpty, indexOf } from 'lodash';
-import propTypes from 'prop-types';
-import styled from 'styled-components';
 import { connectScreenSize } from 'react-screen-size';
-import repoHosts from '../../../../../assets/dropdowns/repoHosts';
 import { mapScreenSizeToProps } from '../../../Community/UserCard';
-import RepoListItem from './RepoListItem';
+import propTypes from 'prop-types';
+import React from 'react';
+import repoHosts from '../../../../../assets/dropdowns/repoHosts';
 import RepoInput from './RepoInput';
-import { Dimmer, Loader, Segment } from 'semantic-ui-react';
+import RepoListItem from './RepoListItem';
+import styled from 'styled-components';
 
+import { Dimmer, Loader, Segment } from 'semantic-ui-react';
+import { indexOf, isEmpty } from 'lodash';
 import {
-  validateGithubRepo as validateRepo,
   searchGithubCommits,
-  validateOtherRepos as validateOther
+  validateOtherRepos as validateOther,
+  validateGithubRepo as validateRepo
 } from '../../../../../actions/repoValidations';
 
 /*

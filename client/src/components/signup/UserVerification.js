@@ -1,12 +1,13 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { socket } from '../../actions/chat';
-import { mapScreenSizeToProps } from '../Navbar';
-import { connectScreenSize } from 'react-screen-size';
 import { addFlashMessage } from '../../actions/flashMessages';
-import { getUserData, verifyUser, saveUser, deleteUser } from '../../actions/user';
+import { connect } from 'react-redux';
+import { connectScreenSize } from 'react-screen-size';
+import { mapScreenSizeToProps } from '../Navbar';
+import propTypes from 'prop-types';
+import React from 'react';
+import { socket } from '../../actions/chat';
+import styled from 'styled-components';
+
+import { deleteUser, getUserData, saveUser, verifyUser } from '../../actions/user';
 
 class UserVerification extends React.Component {
   state = {
