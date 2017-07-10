@@ -1,6 +1,7 @@
 {
   "name": "alumni-network",
   "version": "0.1.0",
+  "repository": "FCC-Alumni/alumni-network",
   "private": true,
   "dependencies": {
     "axios": "^0.15.3",
@@ -41,7 +42,7 @@
     "lint": "eslint --fix .",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://backend:8080",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^3.19.0",
