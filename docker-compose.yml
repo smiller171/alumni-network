@@ -21,7 +21,7 @@ services:
     depends_on:
       - redis
   populate:
-    image: node:8.1.3
+    image: node:8
     volumes:
       - ./:/usr/src/app
     working_dir: /usr/src/app
@@ -31,7 +31,7 @@ services:
     depends_on:
       - waitMongo
   backend:
-    image: node:8.1.3
+    image: node:8
     command: npm run devstart
     volumes:
       - ./:/usr/src/app
@@ -49,7 +49,7 @@ services:
       - waitRedis
       - populate
   frontend:
-    image: node:8.1.3
+    image: node:8
     command: npm start
     volumes:
       - ./:/usr/src/app
