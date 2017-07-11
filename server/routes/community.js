@@ -11,6 +11,7 @@ router.get('/api/community', isAuthenticated, (req, res)  => {
     if (!err) {
       users = users.filter(user => {
         if (user.verifiedUser) {
+          console.log(user);
           return user;
         } else {
           // delete unverified users from DB when populating community

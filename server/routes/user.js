@@ -6,7 +6,7 @@ import express from 'express';
 import handleProcessedUser from '../helpers/handleProcessedUser';
 import { isAuthenticated } from './passport';
 import isCertified from '../helpers/processCerts';
-import passport from 'passport';
+// import passport from 'passport';
 import PrivateChat from '../models/private-chat';
 import safeHandler from '../helpers/safeHandler';
 import User from '../models/user';
@@ -28,41 +28,62 @@ router.post('/api/user', (req, res) => {
   }
 });
 
+async function initiateVerification(req, res) {
+  const now = new Date();
+  const { mongoId } = req.body;
+  // if user is whitelisted, use their alternate username
+  var username = await checkWhiteList(req.body.username);
+  var isWhitelistedUser = !(username === req.body.username);
+  // if user is honorary member, they will be let in w/o certs
+  var isHonoraryMember = await checkHonoraryMemberList(username);
+  // process FCC verification...
+  isCertified(username, isHonoraryMember, isWhitelistedUser)
+  .then(certs => {
+    // update user with certs and correct status in DB
+    handleProcessedUser(certs, mongoId, req, res, username, now);
+  }).catch(err => res.status(500).send(err.message));
+}
+
 // pass async cb func through safeHandler for error handling
 router.post('/api/verify-credentials', isAuthenticated,
-  safeHandler(async function initiateVerification(req, res) {
-    const { mongoId } = req.body;
-    // if user is whitelisted, use their alternate username
-    var username = await checkWhiteList(req.body.username);
-    var isWhitelistedUser = !(username === req.body.username);
-    // if user is honorary member, they will be let in w/o certs
-    var isHonoraryMember = await checkHonoraryMemberList(username);
-    // process FCC verification...
-    isCertified(username, isHonoraryMember, isWhitelistedUser)
-    .then(certs => {
-      // update user with certs and correct status in DB
-      handleProcessedUser(certs, mongoId, req, res, username);
-    }).catch(err => res.status(500).send(err.message));
-  })
+  safeHandler(initiateVerification)
 );
 
-router.post('/api/update-user', (req, res) => {		
-  const { user } = req.body;		
-		
-  User.findById(user._id, (err, updatedUser) => {		
-    if (!err) {		
-      updatedUser.personal = user.personal;		
-      updatedUser.mentorship = user.mentorship;		
-      updatedUser.career = user.career;		
-      updatedUser.skillsAndInterests = user.skillsAndInterests;		
-      updatedUser.projects = user.projects;		
-      updatedUser.social = user.social;		
-      updatedUser.save();		
-      res.json({ updatedUser })		
-    } else {		
-      res.status(401).json({ error: 'User could not be saved' });		
-    }		
-  });		
+router.post('/api/check-certs',
+  safeHandler(initiateVerification)
+);
+
+router.get('/api/certs-age/:mongoId', async function (req, res) {
+  const mongoId = req.params.mongoId;
+  User.findOne({ username: mongoId }, (err, user) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send(err.message);
+      return err;
+    } else {
+      const now = new Date();
+      res.status(200).send({ age: now.valueOf() - user.certsUpdated.valueOf() });
+    }
+  })
+});
+
+router.post('/api/update-user', (req, res) => {
+  const { user } = req.body;
+
+  User.findById(user._id, (err, updatedUser) => {
+    if (!err) {
+      updatedUser.personal = user.personal;
+      updatedUser.mentorship = user.mentorship;
+      updatedUser.career = user.career;
+      updatedUser.skillsAndInterests = user.skillsAndInterests;
+      updatedUser.projects = user.projects;
+      updatedUser.social = user.social;
+      updatedUser.save();
+      res.json({ updatedUser })
+    } else {
+      res.status(401).json({ error: 'User could not be saved' });
+    }
+  });
 });
 
 router.post('/api/update-user-partial', (req, res) => {

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 // Any change to the schema must be reflected in passportLogin && mockData
 const User = new Schema({
+  certsUpdated: Date,
   githubId: { type: String, default: '' },
   username: { type: String, default: '' },
   verifiedUser: { type: Boolean, default: false },

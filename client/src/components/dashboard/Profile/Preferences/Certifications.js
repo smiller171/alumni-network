@@ -9,6 +9,7 @@ export default class Certifications extends React.Component {
     return !isEqual(this.props, nextProps);
   }
   render() {
+    console.log(this.props);
     const { toggle, fccCerts, showFCC } = this.props;
     var certs = [];
     for (var cert in fccCerts) {
