@@ -10,6 +10,9 @@ router.get('/api/community', isAuthenticated, (req, res)  => {
   User.find({}, (err, users) => {
     if (!err) {
       users = users.filter(user => {
+        if (user.personal.email.private) {
+          user.personal.email.email = null;
+        }
         if (user.verifiedUser) {
           console.log(user);
           return user;
