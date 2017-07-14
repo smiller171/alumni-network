@@ -53,20 +53,6 @@ router.post('/api/check-certs',
   safeHandler(initiateVerification)
 );
 
-router.get('/api/certs-age/:mongoId', async function (req, res) {
-  const mongoId = req.params.mongoId;
-  User.findOne({ username: mongoId }, (err, user) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send(err.message);
-      return err;
-    } else {
-      const now = new Date();
-      res.status(200).send({ age: now.valueOf() - user.certsUpdated.valueOf() });
-    }
-  })
-});
-
 router.post('/api/update-user', (req, res) => {
   const { user } = req.body;
 
