@@ -40,7 +40,7 @@ export const updateUserPartial = (id, section, sectionData) => {
 }
 
 export const verifyUser = (username, mongoId) => {
-  return axios.post('/api/verify-credentials', { username, mongoId });
+  return axios.post('/api/verify-credentials', { mongoId, username });
 }
 
 export const updateCerts = (username, mongoId) => {
