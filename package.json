@@ -10,11 +10,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix server server.js",
+    "lint-all": "eslint --fix server server.js && cd client/ && eslint --fix src/",
     "devstart": "nodemon --ignore ./client --exec babel-node -- ./server.js",
-    "start": "babel-node ./server.js",
-    "deploy": "eslint --fix server server.js && git push heroku master",
+    "deploy": "git push heroku master",
     "setup": "./setup.sh",
     "dev": "docker-compose up",
+    "start": "babel-node ./server.js",
     "populate-db": "babel-node ./server/helpers/mockData",
     "heroku-postbuild": "cd client/ && npm install && npm run build"
   },
